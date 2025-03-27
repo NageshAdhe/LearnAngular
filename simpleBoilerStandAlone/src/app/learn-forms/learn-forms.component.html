@@ -1,0 +1,91 @@
+<div class="my-3 p-3 bg-body rounded shadow-sm">
+    <h4 class="border-bottom pb-2 mb-0">Template Driven Forms</h4>
+    <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label"
+          >Email address</label
+        >
+        <input
+          type="email"
+          name="email"
+          class="form-control"
+          id="exampleFormControlInput1"
+          placeholder="name@example.com"
+          [(ngModel)]="formData.email"
+          required
+          #email="ngModel"
+        />
+        <span *ngIf="email.invalid && email.touched" class="error"
+          >please enter valid email</span
+        >
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">password</label>
+        <input
+          type="password"
+          name="password"
+          class="form-control"
+          id="exampleFormControlInput1"
+          placeholder="password"
+          required
+          [(ngModel)]="formData.password"
+          #password="ngModel"
+        />
+        <span *ngIf="password.invalid && password.touched" class="error"
+          >password is required</span
+        >
+      </div>
+      <div class="mb-3">
+        <button class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  
+    <h4 class="border-bottom pb-2 mb-0">Reactive Forms</h4>
+  
+    <form [formGroup]="reactiveLoginForm" (ngSubmit)="submitReactiveLogin()">
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label"
+          >Email address</label
+        >
+        <input
+          type="email"
+          name="email"
+          class="form-control"
+          id="exampleFormControlInput1"
+          placeholder="name@example.com"
+          formControlName="email"
+        />
+        <span
+          *ngIf="
+            reactiveLoginForm?.get('email')?.invalid &&
+            reactiveLoginForm?.get('email')?.touched
+          "
+          class="error"
+          >please enter valid email</span
+        >
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">password</label>
+        <input
+          type="password"
+          name="password"
+          class="form-control"
+          id="exampleFormControlInput1"
+          placeholder="password"
+          formControlName="password"
+        />
+        <span
+          *ngIf="
+            reactiveLoginForm?.get('password')?.invalid &&
+            reactiveLoginForm?.get('password')?.touched
+          "
+          class="error"
+          >password is required</span
+        >
+      </div>
+      <div class="mb-3">
+        <button class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+  
